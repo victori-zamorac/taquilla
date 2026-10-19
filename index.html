@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Deer Land
+        </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <h1>Bienvenido a Deer Land</h1>
+        <p>¿Cuántos boletos desea comprar?</p>
+
+        <button id="btn-decrement"> - </button>
+        <input type="number" id="input-quantity" value="0" min="0">
+        <button id="btn-increment"> + </button>
+        
+        <div>
+            <b>Total: $<span id="amount">0</span> MXN</b>   
+        </div>
+
+        <button>Pagar</button>
+        
+        <script>
+            const decrement = document.getElementById('btn-decrement');
+            const increment = document.getElementById('btn-increment');
+            const quantity  = document.getElementById('input-quantity');
+            const amount    = document.getElementById('amount');
+
+            const price = 100;
+
+            decrement.addEventListener('click', () => {
+                if (quantity.value > 0) {
+                    quantity.value = parseInt(quantity.value) - 1;
+
+                    amount.innerText = price * parseInt(quantity.value);
+                }
+            })
+
+            increment.addEventListener('click', () => { 
+                quantity.value = parseInt(quantity.value) + 1;
+
+                amount.innerText = price * parseInt(quantity.value);
+            })
+
+            quantity.addEventListener('beforeinput', e => {
+                if (e.data === '-' || e.data === '+' || e.data === 'e' || e.data === '.') {
+                    e.preventDefault();
+                }
+            })
+        </script>
+
+    </body>
+</html>
